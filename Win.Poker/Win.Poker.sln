@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win.Poker", "Win.Poker.csproj", "{8B381A19-1C8C-4833-9D0F-B6A611B1824F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win.Poker.Core", "..\Win.Poker.Core\Win.Poker.Core.csproj", "{BFC340D4-728C-4750-BC0F-856AB4CB552D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B381A19-1C8C-4833-9D0F-B6A611B1824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B381A19-1C8C-4833-9D0F-B6A611B1824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B381A19-1C8C-4833-9D0F-B6A611B1824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B381A19-1C8C-4833-9D0F-B6A611B1824F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC340D4-728C-4750-BC0F-856AB4CB552D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC340D4-728C-4750-BC0F-856AB4CB552D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC340D4-728C-4750-BC0F-856AB4CB552D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC340D4-728C-4750-BC0F-856AB4CB552D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
