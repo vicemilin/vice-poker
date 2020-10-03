@@ -1,4 +1,5 @@
 ﻿using System;
+using Win.Poker.Core.Models;
 
 namespace Win.Poker.Core.Helpers
 {
@@ -11,7 +12,7 @@ namespace Win.Poker.Core.Helpers
 		private static readonly Random _rng = new Random(); //Random class should be random enough for this type of project
 		
 		public static CardModel GetRandomCard(){
-			return new CardModel(_rng.Next(1,14), _colors[_rng.Next(0,4)]);
+			return new CardModel((byte)_rng.Next(1,14), _colors[_rng.Next(0,4)]);
 		}
 	}
 }
