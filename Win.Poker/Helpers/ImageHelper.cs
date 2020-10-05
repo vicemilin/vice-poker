@@ -14,7 +14,7 @@ namespace Win.Poker.Helpers
 
         public static void LoadCardImages()
         {
-            var cards = Properties.Resources.cards;
+            Bitmap cards = Properties.Resources.cards;
             _cardImages = new Bitmap[13, 4];
 
             var singleCardWidth = cards.Width / 13;

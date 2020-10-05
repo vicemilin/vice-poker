@@ -17,8 +17,9 @@ namespace Win.Poker.Core.Helpers
                 case HandResult.ThreeOfAKind:
                     return "Three of a Kind";
                 case HandResult.Straight:
+                    return "Straight";
                 case HandResult.Flush:
-                    return result.ToString();
+                    return "Flush";
                 case HandResult.FullHouse:
                     return "Full House";
                 case HandResult.FourOfAKind:
