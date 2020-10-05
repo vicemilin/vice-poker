@@ -39,8 +39,10 @@
   <ItemGroup>
     <Compile Include="Enums.cs" />
     <Compile Include="Helpers\CardGenerator.cs" />
+    <Compile Include="Helpers\ResultHelper.cs" />
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\HandModel.cs" />
+    <Compile Include="Models\HandState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

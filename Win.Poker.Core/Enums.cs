@@ -4,8 +4,8 @@ namespace Win.Poker.Core
 {
 	public enum CardColor
 	{
-		Spades,
 		Clubs,
+		Spades,
 		Hearts,
 		Diamonds
 	}

@@ -10,58 +10,50 @@ namespace Win.Poker.Core.Models
 	public class HandModel
 	{
 		private const int HAND_SIZE = 5;
-		private CardModel[] _currentCards;
-		private CardModel[] _thrownCards;
-		private bool[] _held;
 		
-		private bool _firstDeal = false;
-		private bool _secondDeal = false;
+		public HandState State { get; private set; }
 		
 
 		public HandModel()
 		{
-			_currentCards = new CardModel[HAND_SIZE];
-			_thrownCards = new CardModel[HAND_SIZE];
-			_held = new bool[HAND_SIZE];
+			State = new HandState();
 		}
 		
-		public CardModel[] Deal()
+		public void Deal()
 		{
-			if(!_firstDeal)
+			if(!State.FirstDeal)
 			{
 				FillCurrent();
-				_firstDeal = true;
+				State.FirstDeal = true;
 			}
-			else if(!_secondDeal)
+			else if(!State.SecondDeal)
 			{
 				for(int i = 0; i < HAND_SIZE; i++)
                 {
-                    if (_held[i])
+                    if (!State.HeldCards[i])
                     {
-						_thrownCards[i] = _currentCards[i].Clone();
-						_currentCards[i] = null;
+						State.ThrownCards[i] = State.CurrentCards[i].Clone();
+						State.CurrentCards[i] = null;
                     }
                 }
+				FillCurrent();
+				State.SecondDeal = true;
 			}
-            else { }
-			
-			return _currentCards;
+            else 
+			{
+				Reset();
+			}
 		}
 		
-		public bool[] Hold(int index)
+		public void Hold(int index)
 		{
-			if(_firstDeal && !_secondDeal && index >= 0 && index < 5)
-				_held[index] = !_held[index];
-			return _held;
+			if(State.FirstDeal && !State.SecondDeal && index >= 0 && index < 5)
+				State.HeldCards[index] = !State.HeldCards[index];
 		}
 		
 		public void Reset()
 		{
-			_currentCards = new CardModel[HAND_SIZE];
-			_thrownCards = new CardModel[HAND_SIZE];
-			_held = new bool[HAND_SIZE];
-			_firstDeal = false;
-			_secondDeal = false;
+			State = new HandState();
 		}
 		
 		public HandResult GetResult()
@@ -98,14 +90,14 @@ namespace Win.Poker.Core.Models
 		{
 			for(int i = 0; i < HAND_SIZE; i++)
 			{
-				if(_currentCards[i] == null)
+				if(State.CurrentCards[i] == null)
                 {
                     while (true)
                     {
 						var newCard = CardGenerator.GetRandomCard();
 						if (!IsAlreadyDealt(newCard))
 						{
-							_currentCards[i] = newCard;
+							State.CurrentCards[i] = newCard;
 							break;
 						}
                     }
@@ -115,7 +107,7 @@ namespace Win.Poker.Core.Models
 		
 		private bool IsAlreadyDealt(CardModel card)
 		{
-			return Array.FindIndex<CardModel>(_currentCards, x => card.Equals(x)) >= 0 || Array.FindIndex<CardModel>(_thrownCards, x => card.Equals(x)) >= 0;
+			return Array.FindIndex<CardModel>(State.CurrentCards, x => card.Equals(x)) >= 0 || Array.FindIndex<CardModel>(State.ThrownCards, x => card.Equals(x)) >= 0;
 		}
 
         #endregion
@@ -149,8 +141,8 @@ namespace Win.Poker.Core.Models
 
 		private bool CheckFlush()
         {
-			var firstColor = _currentCards[0].Color;
-			return Array.TrueForAll<CardModel>(_currentCards, x => x.Color == firstColor);
+			var firstColor = State.CurrentCards[0].Color;
+			return Array.TrueForAll<CardModel>(State.CurrentCards, x => x.Color == firstColor);
         }
 
 		private bool CheckStraight()
@@ -186,7 +178,6 @@ namespace Win.Poker.Core.Models
 		private bool CheckJacksOrBetter()
 		{
 			var numbers = GetSameNumbersArray();
-			Array.Sort(numbers);
 			return numbers[0] == 2 || numbers[10] == 2 || numbers[11] == 2 || numbers[12] == 2;
 		}
 		#endregion
@@ -197,7 +188,7 @@ namespace Win.Poker.Core.Models
 			var numbers = new byte[HAND_SIZE];
 			for(int i = 0; i < HAND_SIZE; i++)
             {
-				numbers[i] = _currentCards[i].Number;
+				numbers[i] = State.CurrentCards[i].Number;
             }
 			return numbers;
         }
@@ -211,7 +202,7 @@ namespace Win.Poker.Core.Models
 			var numbers = new byte[13];
 			for(int i = 0; i < HAND_SIZE; i++)
             {
-				numbers[_currentCards[i].Number - 1]++;
+				numbers[State.CurrentCards[i].Number - 1]++;
             }
 			return numbers;
         }
