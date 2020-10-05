@@ -13,7 +13,7 @@ namespace Win.Poker
         public decimal CreditAmount { get; private set; }
         private readonly HandModel _hand = new HandModel();
         private decimal _bet = 1;
-
+        private bool _waitForDouble = false;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -35,7 +35,21 @@ namespace Win.Poker
 
         private void btnDeal_Click(object sender, System.EventArgs e)
         {
+            if(_waitForDouble)
+            {
+                var win = _hand.GetResult();
+                _waitForDouble = false;
+                CreditAmount += _bet * (int)win;
+            }
+            if (!_hand.State.FirstDeal)
+                CreditAmount -= _bet;
             _hand.Deal();
+            if (_hand.State.SecondDeal)
+            {
+                var win = _hand.GetResult();
+                if(win != Core.HandResult.None)
+                    _waitForDouble = true;
+            }
             DrawHand();
         }
 
@@ -78,6 +92,23 @@ namespace Win.Poker
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveCreditInfo();
+        }
+
+        private void numBet_ValueChanged(object sender, System.EventArgs e)
+        {
+            _bet = numBet.Value;
+        }
+
+        private void btnDouble_Click(object sender, System.EventArgs e)
+        {
+            var doubleForm = new FormDouble();
+            var win = _hand.GetResult();
+            doubleForm.WinAmount = _bet * (int)win;
+            doubleForm.ShowDialog();
+            CreditAmount += doubleForm.WinAmount;
+            _waitForDouble = false;
+            doubleForm.Dispose();
+            DrawHand();
         }
         #endregion
 
@@ -146,6 +177,8 @@ namespace Win.Poker
                 }
             }
             #endregion
+
+            btnDouble.Visible = _waitForDouble;
         }
     }
 }

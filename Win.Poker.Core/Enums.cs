@@ -26,4 +26,10 @@ namespace Win.Poker.Core
 		StraightFlush = 50,
 		RoyalFlush = 800
     }
+
+	public enum DoubleColor
+    {
+		Red,
+		Black
+    }
 }

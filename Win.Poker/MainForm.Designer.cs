@@ -42,11 +42,15 @@
             this.lblHold4 = new System.Windows.Forms.Label();
             this.lblWinAmount = new System.Windows.Forms.Label();
             this.lblWinType = new System.Windows.Forms.Label();
+            this.numBet = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnDouble = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numBet)).BeginInit();
             this.SuspendLayout();
             // 
             // cardImage0
@@ -204,6 +208,47 @@
             this.lblWinType.Text = "None";
             this.lblWinType.Visible = false;
             // 
+            // numBet
+            // 
+            this.numBet.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numBet.Location = new System.Drawing.Point(135, 469);
+            this.numBet.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.numBet.Name = "numBet";
+            this.numBet.Size = new System.Drawing.Size(120, 44);
+            this.numBet.TabIndex = 14;
+            this.numBet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numBet.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numBet.ValueChanged += new System.EventHandler(this.numBet_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(63, 481);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 24);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Bet:";
+            // 
+            // btnDouble
+            // 
+            this.btnDouble.Location = new System.Drawing.Point(555, 484);
+            this.btnDouble.Name = "btnDouble";
+            this.btnDouble.Size = new System.Drawing.Size(75, 23);
+            this.btnDouble.TabIndex = 16;
+            this.btnDouble.Text = "Double";
+            this.btnDouble.UseVisualStyleBackColor = true;
+            this.btnDouble.Visible = false;
+            this.btnDouble.Click += new System.EventHandler(this.btnDouble_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +256,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(796, 561);
             this.ControlBox = false;
+            this.Controls.Add(this.btnDouble);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numBet);
             this.Controls.Add(this.lblWinType);
             this.Controls.Add(this.lblWinAmount);
             this.Controls.Add(this.lblHold4);
@@ -237,6 +285,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cardImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numBet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,5 +305,8 @@
         private System.Windows.Forms.Label lblHold4;
         private System.Windows.Forms.Label lblWinAmount;
         private System.Windows.Forms.Label lblWinType;
+        private System.Windows.Forms.NumericUpDown numBet;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnDouble;
     }
 }

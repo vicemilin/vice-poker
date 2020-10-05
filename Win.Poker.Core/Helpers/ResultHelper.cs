@@ -32,5 +32,10 @@ namespace Win.Poker.Core.Helpers
                     return null;
             }
         }
+
+        public static bool IsDoubleWin(DoubleColor color, CardColor cardColor)
+        {
+            return (color == DoubleColor.Black && (cardColor == CardColor.Spades || cardColor == CardColor.Clubs)) || (color == DoubleColor.Red && (cardColor == CardColor.Hearts || cardColor == CardColor.Diamonds));
+        }
     }
 }
