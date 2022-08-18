@@ -4,7 +4,7 @@ namespace Win.Poker.Core.Models
 {
 	/// <summary>
 	/// Holding color and number info about card
-	/// For simplicity number is a integer from 1 to 13, 1 being A and 11, 12, 13 J, Q, K
+	/// For simplicity number is an integer from 1 to 13, 1 being A and 11, 12, 13 being J, Q, K respectively
 	/// </summary>
 	public class CardModel
 	{
